@@ -1,0 +1,15 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+PROJECT(sample_test)
+SET(CMAKE_CXX_STANDARD 17)
+
+
+add_compile_options(-w)
+IF(DEBUG)
+    add_compile_options(-DDEBUG)
+ENDIF()
+IF(OPENGL)
+    add_compile_options(-DOPENGL)
+    link_libraries(GL GLU glut m)
+ENDIF()
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/src)
+ADD_EXECUTABLE(${PROJECT_NAME} sample_test.cpp)
