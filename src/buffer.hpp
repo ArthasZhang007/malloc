@@ -35,6 +35,9 @@ public:
     } base;
 
     //splay functions
+    inline block *fa(block *x);           //return the father of node x
+    inline block *lc(block *x);           //return the left child of node x
+    inline block *rc(block *x);           //return the right child of node x
     inline void zig(block *x); //right rotate
     inline void zag(block *x); //left rotate
     void splay(block *x);      //splay x to the root
@@ -84,6 +87,8 @@ public:
     void get_all_blocks(std::vector<block *> &);
     void get_regular_blocks(std::vector<block *> &);
     void get_small_blocks(std::vector<block *> &);
+    size_t get_depth();                                 //return depth of the splay
+    size_t get_depth(block* x);                         //return depth of the splay
 
     //attribute functions
     size_t count() { return Count; }
@@ -111,9 +116,6 @@ private:
     //internal tree functions
     inline bool isl(block *x);            //whether x is a left node
     inline bool isr(block *x);            //whether x is a right node
-    inline block *fa(block *x);           //return the father of node x
-    inline block *lc(block *x);           //return the left child of node x
-    inline block *rc(block *x);           //return the right child of node x
     inline void ldel(block *x);           //delete the left child of node x
     inline void rdel(block *x);           //delete the right child of node x
     inline void fadel(block *x);          //delete the father of node x

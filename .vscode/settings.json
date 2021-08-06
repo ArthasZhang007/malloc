@@ -61,6 +61,7 @@
         "valarray": "cpp",
         "random": "cpp",
         "malloc": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "linenoise.c": "cpp"
     }
 }

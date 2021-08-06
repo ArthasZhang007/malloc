@@ -90,6 +90,7 @@ bool buffer::find(block *x)
             return true;
         t = keycomp(x, t) ? lc(t) : rc(t);
     }
+    splay(x);
     return false;
 }
 void buffer::remove(block *x)
@@ -113,6 +114,7 @@ block *buffer::mini(block *x)
         return NULL;
     while (lc(x))
         x = lc(x);
+    splay(x);
     return x;
 }
 block *buffer::maxi(block *x)
@@ -121,6 +123,7 @@ block *buffer::maxi(block *x)
         return NULL;
     while (rc(x))
         x = rc(x);
+    splay(x);
     return x;
 }
 block *buffer::mini() { return mini(root); }
@@ -164,11 +167,10 @@ block *buffer::lower_bound(size_t key) // find the smallest block that size(bloc
     while (x)
     {
         pa = x;
-        x = size(x) < key ? rc(x) : lc(x);
-        if (!x)
-            return size(pa) < key ? NULL : pa;
+        x = key < size(x) ? lc(x) : rc(x);
     }
-    return x;
+    splay(pa);
+    return (pa && size(pa) < key) ? Next(pa) : pa;
 }
 void buffer::print(block *x, size_t sz = 0, int depth = 0, bool p = 0) // print lc(x), rc(x) recursion tree
 {
@@ -198,3 +200,5 @@ void buffer::printh(block *x, size_t sz = 0, int depth = 0, bool p = 0) // print
 }
 void buffer::print() { print(root); }
 void buffer::printh() { printh(root); }
+size_t buffer::get_depth() { return get_depth(root); }
+size_t buffer::get_depth(block *x) { return x ? std::max(get_depth(lc(x)), get_depth(rc(x))) + 1 : 0; }

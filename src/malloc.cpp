@@ -4,7 +4,6 @@ Authored by Arthas Zhang
 #include <splay.cpp>
 using namespace std;
 
-
 void buffer::new_free_block(void *p, size_t sz)
 {
     block *x = (block *)p;
@@ -103,7 +102,8 @@ void *buffer::malloc(size_t sz)
             ans = mini();
             split_block(ans, sz);
         }
-        else delete_block(ans);
+        else
+            delete_block(ans);
     }
     else
     {
@@ -141,8 +141,8 @@ void buffer::coalesce(block *x)
         r = NULL;
     if (!l && !r)
     {
+        new_free_block(x, size(x));
         fi = x;
-        update_info(fi);
     }
     else if (l && r)
     {
