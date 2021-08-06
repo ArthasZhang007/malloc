@@ -5,7 +5,7 @@ A malloc visualizer using two-pointer splay tree.
 
 # Example
 
-![Alt text](image/image/img.jpg?raw=true "Title")
+![Optional Text](../master/image/img.jpg?raw=true "Title")
 # Sample usage
 mkdir build && cd build \
 cmake [-DDEBUG=ON/OFF] [-DOPENGL=ON/OFF] .. \
