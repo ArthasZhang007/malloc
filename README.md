@@ -4,8 +4,7 @@
 A malloc visualizer using two-pointer splay tree.
 
 # Example
-
-![Optional Text](../master/image/img.jpg?raw=true "Title")
+<img src="image/img.jpg" alt="example"/>
 # Sample usage
 mkdir build && cd build \
 cmake [-DDEBUG=ON/OFF] [-DOPENGL=ON/OFF] .. \
